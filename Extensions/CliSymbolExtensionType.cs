@@ -1,5 +1,5 @@
-﻿//using Extensions;
-//using ExtensionsSCL;
+﻿//using PossibleFuture_Extensions;
+//using Scl.Dummy.Api;
 
 //namespace CSharp13;
 
@@ -10,9 +10,12 @@
 ///// </summary>
 //public implicit extension CliSymbolExtensionType for CliSymbol
 //{
+//    // Allows static methods and properties
 //    public static string[] AvailableAnnotations
-//    => [
-//        Annotations.Description    ];
+//        => [
+//        Annotations.Description ];
+
+//    // Allows instance methods and properties
 //    public string? Description { get; set; }
 //}
 
@@ -23,8 +26,8 @@
 //        Console.WriteLine(string.Concat(Environment.NewLine, CliSymbol.AvailableAnnotations));
 
 //        var command = new CliCommand("base");
-//        command.SetDescription("This is the base command");
+//        command.Description = "This is the base command";
 //        Console.WriteLine(command.Description);
 //    }
 //}
-    
+

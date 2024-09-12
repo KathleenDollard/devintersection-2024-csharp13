@@ -22,3 +22,4 @@ public abstract record class Vehicle
 
     // public record class DeliveryTruck(int GrossWeightClass) { } : Vehicle
 }
+

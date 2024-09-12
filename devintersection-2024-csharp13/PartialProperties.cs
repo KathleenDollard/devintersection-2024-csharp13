@@ -7,22 +7,23 @@ namespace CSharp13;
 // UserCode.cs
 public partial class ViewModel : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     [NotifyPropertyChanged]
-    public partial string UserName { get; set; }
+    public partial string? UserName { get; set; }
 }
 
 // Marker interface that drives generation
+[AttributeUsage(AttributeTargets.Property)]
 internal class NotifyPropertyChangedAttribute : Attribute
 { }
 
 // Generated.cs
 public partial class ViewModel
 {
-    private string __generated_userName;
+    private string? __generated_userName;
 
-    public partial string UserName
+    public partial string? UserName
     {
         get => __generated_userName;
         set

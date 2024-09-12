@@ -1,4 +1,5 @@
 ﻿
+
 namespace Scl.Dummy.Api;
 
 // Basic architecture:
@@ -20,25 +21,31 @@ public abstract class CliSymbol
 }
 public abstract class CliValueSymbol : CliSymbol
 {
-    protected CliValueSymbol(string name, params string[] aliases)
-        : base(name, aliases) { }
+    public Type ValueType { get; }
+    protected CliValueSymbol(string name, Type valueType, params string[] aliases)
+        : base(name, aliases)
+    {
+        ValueType = valueType;
+    }
 }
 public class CliCommand : CliSymbol
 {
     public CliCommand(string name, params string[] aliases)
         : base(name, aliases) { }
 }
+
+// Options and arguments are generic to the type they accept 
+// in the real System.CommandLine, but that added complexity 
+// to this example.
 public class CliOption : CliValueSymbol
 {
-    public CliOption(string name, params string[] aliases)
-        : base(name, aliases) { }
-
+    public CliOption(string name, Type valueType, params string[] aliases)
+        : base(name, valueType, aliases) { }
 }
 public class CliArgument : CliValueSymbol
 {
-    public CliArgument(string name, params string[] aliases)
-        : base(name, aliases) { }
-
+    public CliArgument(string name, Type valueType, params string[] aliases)
+        : base(name, valueType, aliases) { }
 }
 
 //public class SclExampleNullable

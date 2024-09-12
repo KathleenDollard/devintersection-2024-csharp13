@@ -21,22 +21,23 @@ public static class TollCalculator // Partial implementation
         {
             null => throw new ArgumentNullException(nameof(vehicle)),
             Vehicle.Car car => CarToll(car),
-            Vehicle.Taxi taxi => TaxiToll(taxi),
+            Vehicle.Taxi { Fares: var fares} => TaxiToll(fares),
             Vehicle.Bus bus => BusToll(bus),
-            _ => throw new NotImplementedException() // Would not be needed if exhaustiveness is enforced
+            // Default would not be needed if exhaustiveness is enforced
+            _ => throw new NotImplementedException() 
         };
 
         static decimal CarToll(Vehicle.Car car)
-        => car.Passengers switch
-        {
-            0 => carBase + 0.5m,
-            1 => carBase,
-            2 => carBase - 0.5m,
-            _ => carBase - 1.00m
-        };
+            => car.Passengers switch
+            {
+                0 => carBase + 0.5m,
+                1 => carBase,
+                2 => carBase - 0.5m,
+                _ => carBase - 1.00m
+            };
 
-        static decimal TaxiToll(Vehicle.Taxi taxi)
-            => taxi.Fares switch
+        static decimal TaxiToll(int fares)
+            => fares switch
             {
                 0 => taxiBase + 1.0m,
                 1 => taxiBase,
